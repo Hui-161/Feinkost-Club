@@ -24,7 +24,6 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Roher, industrieller Stil */
         .brutalist-border {
             border: 2px solid var(--text-light);
         }
@@ -70,7 +69,6 @@
 </head>
 <body class="min-h-screen flex flex-col items-center p-6 md:p-12">
 
-    <!-- Header / Logo -->
     <header class="w-full max-w-4xl flex justify-between items-center mb-16 pt-4">
         <div class="text-3xl md:text-5xl font-bold tracking-tighter display-font uppercase">
             Feinkost
@@ -80,7 +78,6 @@
         </div>
     </header>
 
-    <!-- Ticker -->
     <div class="w-full max-w-4xl marquee-container">
         <div class="marquee-content">
             TECHNO AUS DER FLEISCHEREI +++ ALLES SELBST GEBAUT +++ ROHER SOUND +++ BADEBORNER STRASSE 20A +++ TECHNO AUS DER FLEISCHEREI +++ ALLES SELBST GEBAUT +++ ROHER SOUND +++ BADEBORNER STRASSE 20A +++
@@ -89,60 +86,71 @@
 
     <main class="w-full max-w-4xl space-y-24">
         
-        <!-- Intro Text -->
         <section class="max-w-2xl">
             <h2 class="text-xl md:text-2xl font-light leading-relaxed mb-6">
                 Ein junges Kollektiv hat aus der alten Fleischerei einen Technoclub gezimmert.
             </h2>
-            <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
-                „Alles wurde selbst gebaut, gesprayt, geschweißt – nach Feierabend, neben regulären Jobs. Der Sound: roh.“
-            </p>
             <p class="text-gray-400 text-sm md:text-base leading-relaxed">
                 Wir planen aktuell mit ausgewählten Veranstaltungen im Jahr. Da, wo normalerweise nichts passiert, brummt jetzt der Bass. Aus Mangel wurde Kraft, aus der Provinz ein kultureller Fixpunkt.
             </p>
         </section>
 
-        <!-- Press Quotes -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-800 pt-12">
             <div class="space-y-2">
-                <p class="text-sm italic text-gray-300">„Weil hier klar wird: Kultur ist keine Frage der Stadtgröße, sondern der Idee. Hier hat ein ambitioniertes Team Bewährtes umgedreht: Der Leerstand wurde zur emotionalen und getanzten Bühne.“</p>
+                <p class="text-sm italic text-gray-300">„Alles wurde selbst gebaut, gesprayt, geschweißt – nach Feierabend, neben regulären Jobs. Der Sound: roh. Die Vision: groß. Die Umsetzung: kompromisslos DIY.“</p>
+                <p class="text-xs uppercase tracking-widest text-gray-600">— FAZEmag</p>
+            </div>
+            <div class="space-y-2">
+                <p class="text-sm italic text-gray-300">„Weil hier klar wird: Kultur ist keine Frage der Stadtgröße, sondern der Idee. Hier hat ein ambitioniertes Team Bewährtes umgedreht: Der Leerstand wurde zur emotionalen und getanzten Bühne. Und da, wo normalerweise nichts passiert, brummt jetzt der Bass.“</p>
                 <p class="text-xs uppercase tracking-widest text-gray-600">— theclubmap</p>
             </div>
             <div class="space-y-2">
                 <p class="text-sm italic text-gray-300">„Die Feinkost schafft in Ballenstedt eine lebendige Community, die durch ein familiäres Flair und neue Perspektiven besticht.“</p>
-                <p class="text-xs uppercase tracking-widest text-gray-600">— FAZEmag</p>
+                <p class="text-xs uppercase tracking-widest text-gray-600">— Groove</p>
             </div>
-            <div class="space-y-2 md:col-span-2">
-                <p class="text-sm italic text-gray-300">„Zu den Parties kommen hunderte Gäste aus Ballenstedt und der Region. Das schafft nicht nur aufregende Nächte, sondern auf lange Sicht auch eine Bleibeperspektive für junge Menschen.“</p>
-                <p class="text-xs uppercase tracking-widest text-gray-600">— MDR (45min Dokumentation) / Groove</p>
+            <div class="space-y-2">
+                <p class="text-sm italic text-gray-300">„Ein junges Kollektiv hat aus der alten Fleischerei einen Technoclub gezimmert: Die „Feinkost“. Zu den Parties kommen hunderte Gäste aus Ballenstedt und der Region. Das schafft nicht nur aufregende Nächte, sondern auf lange Sicht auch eine Bleibeperspektive für junge Menschen.“</p>
+                <p class="text-xs uppercase tracking-widest text-gray-600">— MDR (45min Dokumentation)</p>
             </div>
         </section>
 
-        <!-- Events & Tickets (Pretix Placeholder) -->
         <section class="border-t border-gray-800 pt-12">
             <h2 class="text-2xl display-font font-bold uppercase mb-8 tracking-wide">Nächste Raves</h2>
-            
             <div class="space-y-4 mb-10">
-                <!-- Event 1 Placeholder -->
                 <div class="brutalist-border p-4 md:p-6 flex flex-col md:flex-row justify-between md:items-center gap-4 hover:bg-white hover:text-black transition-colors cursor-pointer group">
                     <div>
-                        <div class="text-xs font-bold tracking-widest uppercase mb-1">TBA 2026</div>
-                        <div class="text-xl display-font font-bold uppercase">Feinkost Clubnacht</div>
+                        <div class="text-xs font-bold tracking-widest uppercase mb-1">06. Juni 2026</div>
+                        <div class="text-xl display-font font-bold uppercase">Techno 06.06.</div>
+                    </div>
+                    <div class="text-sm tracking-widest uppercase font-bold md:opacity-0 group-hover:opacity-100 transition-opacity">
+                        Lineup & Info ->
+                    </div>
+                </div>
+                <div class="brutalist-border p-4 md:p-6 flex flex-col md:flex-row justify-between md:items-center gap-4 hover:bg-white hover:text-black transition-colors cursor-pointer group">
+                    <div>
+                        <div class="text-xs font-bold tracking-widest uppercase mb-1">31. Oktober 2026</div>
+                        <div class="text-xl display-font font-bold uppercase">Techno 31.10.</div>
+                    </div>
+                    <div class="text-sm tracking-widest uppercase font-bold md:opacity-0 group-hover:opacity-100 transition-opacity">
+                        Lineup & Info ->
+                    </div>
+                </div>
+                <div class="brutalist-border p-4 md:p-6 flex flex-col md:flex-row justify-between md:items-center gap-4 hover:bg-white hover:text-black transition-colors cursor-pointer group">
+                    <div>
+                        <div class="text-xs font-bold tracking-widest uppercase mb-1">12. Dezember 2026</div>
+                        <div class="text-xl display-font font-bold uppercase">Techno 12.12.</div>
                     </div>
                     <div class="text-sm tracking-widest uppercase font-bold md:opacity-0 group-hover:opacity-100 transition-opacity">
                         Lineup & Info ->
                     </div>
                 </div>
             </div>
-
             <a href="#" class="brutalist-button block w-full text-center py-5 text-sm tracking-[0.2em]">
                 Tickets auf Pretix sichern
             </a>
         </section>
-
     </main>
 
-    <!-- Footer -->
     <footer class="w-full max-w-4xl mt-24 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-xs text-gray-500 uppercase tracking-widest">
         <div>
             <p>Feinkost Club</p>
@@ -151,13 +159,12 @@
         </div>
         
         <div class="flex gap-6">
-            <a href="#" class="hover:text-white transition-colors">Instagram</a>
+            <a href="https://www.instagram.com/feinkost_club/" target="_blank" class="hover:text-white transition-colors">Instagram</a>
             <a href="mailto:info@feinkost-club.de" class="hover:text-white transition-colors">Mail</a>
         </div>
         
         <div class="flex gap-4">
-            <a href="#" class="hover:text-white transition-colors">Impressum</a>
-            <a href="#" class="hover:text-white transition-colors">Datenschutz</a>
+            <a href="legal.html" class="hover:text-white transition-colors">Impressum & Datenschutz</a>
         </div>
     </footer>
 
