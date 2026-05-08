@@ -307,9 +307,23 @@
                     </div>
                 </div>
             </div>
-            <a href="https://toduu.de/org/68f11da1530230a886b98702" class="brutalist-button block w-full text-center py-5 text-sm tracking-[0.2em]">
-                Tickets auf toduu sichern
-            </a>
+            <a href="#" id="ticket-btn" class="brutalist-button block w-full text-center py-5 text-sm tracking-[0.2em]">
+    Tickets auf toduu sichern
+</a>
+
+<script>
+  (function() {
+    var btn = document.getElementById('ticket-btn');
+    var deadline = new Date('2026-06-06T00:00:00');
+    var now = new Date();
+
+    if (now < deadline) {
+      btn.href = 'https://toduu.de/events/late-night-session-30';
+    } else {
+      btn.href = 'https://toduu.de/org/68f11da1530230a886b98702';
+    }
+  })();
+</script>
         </section>
     </main>
 
