@@ -95,6 +95,36 @@ _Letzte Änderung: 2026-07-29_
 
 ## 6. Register der Sitzungen / Branches
 
+### claude/website-image-schedule-update-hhh4xu — Hintergrundbild, Logo, Termine 2026
+- **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
+- **Zeitraum/Thema:** 2026-07-29. Neues Hintergrundbild, freigestelltes Logo und
+  Event-Termine 2026 auf der Website.
+- **Wesentliche Ergebnisse:**
+  - Hero-Hintergrundbild `images/hero-bg.webp` als fixierter Ganzseiten-Hintergrund
+    mit dunklem Overlay (Lesbarkeit) eingebaut.
+  - Logo `images/logo.png` freigestellt: eng zugeschnitten, transparenter
+    Hintergrund, Rahmen+Schrift weiß invertiert (statt weißer Box mit dunkler
+    Schrift); sitzt direkt im Header auf dunklem Grund.
+  - Sektion „Nächste Raves" komplett auf 9 Termine 2026 aktualisiert:
+    Classic Night (18.07./07.11./26.12.), Teenie-Party (04.09./06.11./11.12.),
+    Techno / House VA (12.09./12.12.), Wasted x Black Ego (10.10.). Bezeichnungen
+    laut Betreiber („Classic Night" statt „Disco", „Teenie-Party" statt „Teenie",
+    „Techno / House VA" statt „Techno").
+  - schema.org-JSON-LD-Eventdaten passend auf alle 9 Termine aktualisiert;
+    Ticket-Button vereinfacht (direkter Link zur toduu-Org-Seite, abgelaufene
+    Deadline-Logik entfernt).
+- **Wichtig für Nachfolger / Stolperfallen:**
+  - GitHub-Pages-Deploy hakte mehrfach mit „Deployment failed, try again later",
+    Re-Runs blieben in „queued" hängen — **Upstream-Störung von GitHub Pages**,
+    nicht im Repo. Was half: **neuer leerer Commit auf `main`** stößt einen
+    frischen Build/Deploy an, statt denselben Run endlos neu zu starten. Daher
+    stehen zwei leere „Trigger GitHub Pages rebuild"-Commits in der Historie
+    (harmlos).
+  - Logo-Freistellung per Pillow/numpy in der Sandbox (Luminanz→Alpha, dunkle
+    Pixel→weiß) aus dem gelieferten Logo mit weißem Hintergrund.
+  - Tailwind kommt per CDN; in der Sandbox ist `cdn.tailwindcss.com` durch den
+    Proxy blockiert → lokale Vorschau wirkt ungestylt, ist aber **kein** Fehler.
+
 ### claude/namecheap-ssl-after-migration-2c9d8l — SSL nach Hoster-Migration (Namecheap → Hetzner/GitHub Pages)
 - **Status:** abgeschlossen, **0 Commits Code-Änderung** (reine Beratungssitzung).
   Der Remote-Branch wurde bereits gelöscht; der lokale Branch stand exakt auf `main`.
