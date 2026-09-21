@@ -40,7 +40,8 @@ _Letzte Änderung: 2026-09-21_
 | `CNAME`                   | `feinkost-club.de` — bindet GitHub Pages an die Domain. **Nicht löschen.** | aktiv |
 | `robots.txt`              | SEO: erlaubt alles, verweist auf Sitemap.                          | aktiv |
 | `sitemap.xml`             | SEO: listet `/` und `/legal.html`.                                 | aktiv |
-| `images/`                 | `hero-bg.webp` (Hero-Hintergrund), `logo.png` (freigestelltes Logo). | aktiv |
+| `images/`                 | `hero-bg.webp` (Hero-Hintergrund), `logo.png` (freigestelltes Logo), `favicon-32/192/512.png`, `apple-touch-icon.png` (Favicon-Set). | aktiv |
+| `favicon.ico`, `site.webmanifest` | Favicon (16/32/48 px) und Web-Manifest (Name, Farben, Icons). | aktiv |
 | `fonts/`                  | Lokal gehostete Schriften (Inter, Space Grotesk) als `.woff2` — **bewusst lokal statt Google-Fonts-CDN (DSGVO).** | aktiv |
 | `00_KI-Uebergabe/AI_übergabe.md` | Diese Übergabe-Datei.                                       | aktiv |
 
@@ -101,6 +102,27 @@ _Letzte Änderung: 2026-09-21_
     GitHub gelöscht werden.
 
 ## 6. Register der Sitzungen / Branches
+
+### claude/favicon-logo — Favicon aus dem quadratischen Feinkost-Logo
+- **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
+- **Zeitraum/Thema:** 2026-09-21 (gleiche Sitzung wie `claude/druckausgleich-ticketlink`).
+  Betreiber lieferte Logo-Zip (`FEINKOST.png/.jpg/.pdf` = Logo mit Rahmen, dunkle
+  Schrift auf Weiß; `Insta_Profil-4.png` = quadratisch, weiße Schrift auf Dunkel).
+- **Wesentliche Ergebnisse:**
+  - Favicon-Set aus `Insta_Profil-4.png` (passt zum dunklen Seiten-Design), enger
+    zugeschnitten (Schrift ≈ 81 % der Kantenlänge), damit „FEIN KOST" auch bei
+    16 px erkennbar bleibt: `favicon.ico` (16/32/48), `images/favicon-32.png`,
+    `images/favicon-192.png`, `images/favicon-512.png`, `images/apple-touch-icon.png` (180).
+  - `site.webmanifest` (Name, `theme_color`/`background_color` `#050505`, Icons).
+  - `<link rel="icon"…>`, `apple-touch-icon`, `manifest` und `theme-color` im
+    `<head>` von `index.html` **und** `legal.html`.
+- **Wichtig für Nachfolger / Stolperfallen:**
+  - Neue HTML-Seiten brauchen denselben Link-Block im `<head>` (aus `index.html` kopieren).
+  - Favicons wurden mit Pillow erzeugt (`pip install pillow` in der Sandbox nötig).
+    Das Quell-Logo hat eine helle 1-px-Linie am linken Rand → beim automatischen
+    Zuschnitt Randspalten ignorieren.
+  - Ein `og:image` für Social-Sharing gibt es weiterhin **nicht** — Kandidat wäre
+    `images/favicon-512.png` oder ein eigenes 1200×630-Bild.
 
 ### claude/druckausgleich-ticketlink — Ticket-Link „Druckausgleich" 10.10.2026, vergangene Termine raus
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
