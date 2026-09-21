@@ -5,7 +5,7 @@ Projekt. Jede neue Sitzung liest **zuerst** diese Datei, bevor sie arbeitet, und
 trägt am Ende ihren eigenen Abschnitt unter §6 nach. So weiß jede Sitzung, was
 vorher passiert ist, welche Regeln gelten und wo die Stolperfallen liegen.
 
-_Letzte Änderung: 2026-07-29_
+_Letzte Änderung: 2026-09-21_
 
 ---
 
@@ -35,7 +35,7 @@ _Letzte Änderung: 2026-07-29_
 
 | Ordner / Datei            | Zweck                                                              | Stand |
 |---------------------------|-------------------------------------------------------------------|-------|
-| `index.html`              | Startseite „Feinkost Club \| Techno in Ballenstedt"; enthält u. a. Sektion **„Nächste Raves"** (Event-Termine 2026). | aktiv |
+| `index.html`              | Startseite „Feinkost Club \| Techno in Ballenstedt"; oben ein **Ticket-Kasten „Nächster Rave"** (direkter Ticket-Link), darunter Sektion **„Nächste Raves"** (Event-Termine 2026). | aktiv |
 | `legal.html`              | Impressum & Datenschutz.                                           | aktiv |
 | `CNAME`                   | `feinkost-club.de` — bindet GitHub Pages an die Domain. **Nicht löschen.** | aktiv |
 | `robots.txt`              | SEO: erlaubt alles, verweist auf Sitemap.                          | aktiv |
@@ -90,10 +90,46 @@ _Letzte Änderung: 2026-07-29_
   - **Auto-Renew des SSL-Produkts bei Namecheap** deaktivieren (Aufgabe des
     Nutzers, außerhalb des Repos).
   - **Event-Termine** in `index.html` sind bis Ende 2026 gepflegt; laufend aktuell
-    halten. (Hinweis: parallele Sitzung `claude/website-image-schedule-update-hhh4xu`
-    arbeitet an Bildern/Terminen — deren Details trägt jene Sitzung selbst unter §6 ein.)
+    halten. Vergangene Termine **entfernen** (Liste **und** JSON-LD) — Stand
+    2026-09-21 stehen nur noch die 6 Termine ab 10.10.2026 drin.
+  - **Ticket-Kasten „Nächster Rave"** oben auf der Startseite zeigt fest auf
+    „Druckausgleich" (10.10.2026). Nach dem Event auf den nächsten Termin
+    umstellen oder entfernen, sonst wirbt die Seite für eine vergangene Party.
+  - Der Ticket-Link `https://toduu.de/events/druckausgleich` kam vom Betreiber und
+    konnte aus der Sandbox nicht aufgerufen werden (Proxy) → im Browser prüfen.
+  - Branch `claude/website-image-schedule-update-hhh4xu` ist gemergt und kann auf
+    GitHub gelöscht werden.
 
 ## 6. Register der Sitzungen / Branches
+
+### claude/druckausgleich-ticketlink — Ticket-Link „Druckausgleich" 10.10.2026, vergangene Termine raus
+- **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
+- **Zeitraum/Thema:** 2026-09-21. Betreiber lieferte Plakat und direkten toduu-Link
+  für „Druckausgleich" (Black Ego x Wasted Electronic Youth, Techno/House/DnB,
+  Sa 10.10.2026, Start 22:00 Uhr). Auftrag: Link hinterlegen, „den Leuten es so
+  einfach wie möglich machen", vergangene Veranstaltungen entfernen.
+- **Wesentliche Ergebnisse:**
+  - Neuer **Ticket-Kasten „Nächster Rave"** als erste Sektion in `<main>` (direkt
+    unter der Laufschrift): Datum, Titel „Druckausgleich", Subline, Button
+    „Tickets sichern" → `https://toduu.de/events/druckausgleich`. Grund: Das Plakat
+    verweist auf `feinkost-club.de`, Besucher sollen ohne Scrollen zum Ticket kommen.
+  - Karte 10.10. in „Nächste Raves" von „Wasted x Black Ego" auf **„Druckausgleich"**
+    umbenannt, Uhrzeit + Subline ergänzt, eigener „Tickets sichern"-Button rechts.
+  - **Vergangene Termine entfernt** (18.07. Classic Night, 04.09. Teenie-Party,
+    12.09. Techno / House VA) — in der sichtbaren Liste **und** im Events-JSON-LD.
+    Übrig: 6 Termine (10.10., 06.11., 07.11., 11.12., 12.12., 26.12.).
+  - JSON-LD des 10.10.-Events: Name/Beschreibung auf Druckausgleich, `url` und
+    `offers.url` auf den direkten Ticket-Link. Übrige Events behalten den
+    toduu-Org-Link; der Sammel-Button „Tickets auf toduu sichern" unten bleibt.
+  - `sitemap.xml`: `lastmod` der Startseite auf 2026-09-21.
+- **Wichtig für Nachfolger / Stolperfallen:**
+  - Events stehen **zweimal** in `index.html`: sichtbare Karten in „Nächste Raves"
+    **und** als JSON-LD-Array im `<head>`. Immer beides ändern. Das JSON-LD wurde
+    per `json.loads`/`json.dumps` (indent=2, ensure_ascii=False) neu geschrieben.
+  - Der Ticket-Kasten oben ist **statisch** verdrahtet (kein JS) — nach dem
+    10.10.2026 manuell auf den nächsten Termin umstellen.
+  - Externe Links (toduu) sind aus der Sandbox **nicht** erreichbar (Proxy 403) →
+    Link-Prüfung im Browser des Nutzers.
 
 ### claude/website-image-schedule-update-hhh4xu — Hintergrundbild, Logo, Termine 2026
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
