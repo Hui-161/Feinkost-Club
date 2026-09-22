@@ -34,8 +34,7 @@ _Letzte Änderung: 2026-09-22_
 ## 2. Was ist hier drin
 
 | Ordner / Datei            | Zweck                                                              | Stand |
-|---------------------------|-------------
-------------------------------------------------------|-------|
+|---------------------------|-------------------------------------------------------------------|-------|
 | `index.html`              | Startseite „Feinkost Club \| Techno in Ballenstedt"; oben ein **Ticket-Kasten „Nächster Rave"** (direkter Ticket-Link), darunter Sektion **„Nächste Raves"** (Event-Termine 2026). | aktiv |
 | `legal.html`              | Impressum & Datenschutz.                                           | aktiv |
 | `CNAME`                   | `feinkost-club.de` — bindet GitHub Pages an die Domain. **Nicht löschen.** | aktiv |
@@ -135,10 +134,14 @@ ch die 6 Termine ab 10.10.2026 drin.
     ob §7 „Externe Links" in `legal.html` ergänzt werden muss.
   - Chat-Uploads enthalten keine Binärdaten → Logo-Dateien müssen
     anders ins Repo (z. B. direkt über GitHub hochladen).
-  - Erster Push-Versuch (Commit 3fbcfb9) enthielt durch die
-    Tool-Übertragung eingeschleppte Zeilenumbrüche mitten in
-    HTML-Attributen; wurde mit Folge-Commit aus dem Elter-Stand
-    neu aufgebaut.
+  - **WICHTIG, Tooling:** Der URL-Reader bricht lange Zeilen um
+    (2000er-Chunks) und macht Dateien beim Weiterverarbeiten
+    kaputt. Dateien aus dem URL-Read NIE ungeprüft zurückschreiben
+    — erst entfalten (Gitterposition 2000+2001k) und gegen
+    jsDelivr abgleichen. Commits 3fbcfb9 und 70e8197 enthielten
+    solche Artefakte; finaler Stand wurde aus Commit 9856bb
+    (verifiziert) neu aufgebaut. fold-test.html nach Vermessung
+    gelöscht.
 
 ### claude/favicon-logo — Favicon aus dem quadratischen Feinkost-Logo
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
