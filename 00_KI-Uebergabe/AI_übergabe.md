@@ -5,7 +5,7 @@ Projekt. Jede neue Sitzung liest **zuerst** diese Datei, bevor sie arbeitet, und
 trägt am Ende ihren eigenen Abschnitt unter §6 nach. So weiß jede Sitzung, was
 vorher passiert ist, welche Regeln gelten und wo die Stolperfallen liegen.
 
-_Letzte Änderung: 2026-09-21_
+_Letzte Änderung: 2026-09-22_
 
 ---
 
@@ -34,7 +34,8 @@ _Letzte Änderung: 2026-09-21_
 ## 2. Was ist hier drin
 
 | Ordner / Datei            | Zweck                                                              | Stand |
-|---------------------------|-------------------------------------------------------------------|-------|
+|---------------------------|-------------
+------------------------------------------------------|-------|
 | `index.html`              | Startseite „Feinkost Club \| Techno in Ballenstedt"; oben ein **Ticket-Kasten „Nächster Rave"** (direkter Ticket-Link), darunter Sektion **„Nächste Raves"** (Event-Termine 2026). | aktiv |
 | `legal.html`              | Impressum & Datenschutz.                                           | aktiv |
 | `CNAME`                   | `feinkost-club.de` — bindet GitHub Pages an die Domain. **Nicht löschen.** | aktiv |
@@ -57,7 +58,8 @@ _Letzte Änderung: 2026-09-21_
 - **`CNAME` niemals entfernen oder ändern** — sonst bricht die Domain-Anbindung
   und die Seite ist unter `feinkost-club.de` nicht mehr erreichbar.
 - **SEO konsistent halten:** Bei neuen Seiten `sitemap.xml` mitpflegen; bei
-  inhaltlichen Änderungen `lastmod` in `sitemap.xml` aktualisieren.
+  inhaltlichen Änderung
+en `lastmod` in `sitemap.xml` aktualisieren.
 - **`main` ist live.** Direkt auf `main` gepushte Änderungen gehen sofort online —
   entsprechend sorgfältig committen.
 - **Vor dem Commit:** Da es keine Testsuite gibt → HTML im Browser sichten
@@ -92,7 +94,8 @@ _Letzte Änderung: 2026-09-21_
     Nutzers, außerhalb des Repos).
   - **Event-Termine** in `index.html` sind bis Ende 2026 gepflegt; laufend aktuell
     halten. Vergangene Termine **entfernen** (Liste **und** JSON-LD) — Stand
-    2026-09-21 stehen nur noch die 6 Termine ab 10.10.2026 drin.
+    2026-09-21 stehen nur no
+ch die 6 Termine ab 10.10.2026 drin.
   - **Ticket-Kasten „Nächster Rave"** oben auf der Startseite zeigt fest auf
     „Druckausgleich" (10.10.2026). Nach dem Event auf den nächsten Termin
     umstellen oder entfernen, sonst wirbt die Seite für eine vergangene Party.
@@ -102,6 +105,30 @@ _Letzte Änderung: 2026-09-21_
     GitHub gelöscht werden.
 
 ## 6. Register der Sitzungen / Branches
+
+### session/2026-09-22-foerderer-logos — Förderer-Logos im Footer
+- **Status:** gemerged — direkt auf `main` gepusht (kein separater Branch).
+- **Zeitraum/Thema:** 2026-09-22. Mail von Hannes Herrmann (IEK) „Logo": zwei
+  Förderer-Logos im Footer, jeweils auf die Förderer-Seite verlinkt, darüber der
+  Hinweis „Gefördert von:".
+- **Wesentliche Ergebnisse:**
+  - `index.html`-Footer: neue Vollbreite-Zeile mit „Gefördert von:" und zwei Logos
+    auf weißen Karten (Seiten-Design dunkel, Logos dunkel/farbig auf weiß):
+    1. **Initiative Musik** → https://www.initiative-musik.de/ — Bild: gstatic-Thumbnail-URL aus der Mail.
+    2. **BKM** (Beauftragte der Bundesregierung für Kultur und Medien) → https://www.kulturstaatsminister.de/ — Bild: offizielle SVG-URL
+       https://kulturstaatsminister.de/fileadmin/Logo/BKM_de_v2__Web_farbig.svg
+  - `sitemap.xml`: `lastmod` der Startseite auf 2026-09-22 aktualisiert.
+  - `legal.html` hat keinen Footer → dort nichts ergänzt.
+- **Wichtig für Nachfolger / Stolperfallen:**
+  - **Beide Logos sind Hotlinks** (nicht im Repo gehostet), weil die KI-Sandbox keine
+    Binärdateien laden/pushen kann. Die gstatic-Thumbnail-URL ist **nicht dauerhaft
+    stabil** → sobald eine offizielle Logo-Datei der Initiative Musik vorliegt, unter
+    `images/` hosten und `src` ersetzen. BKM-SVG bei Gelegenheit ebenfalls lokal speichern.
+  - **Datenschutz:** Hotlinks lösen beim Seitenaufruf Requests an Google (gstatic) und
+    kulturstaatsminister.de aus. Prüfen, ob §7 „Externe Links" in `legal.html` ergänzt
+    werden muss.
+  - Chat-Uploads enthalten keine Binärdaten → Logo-Dateien müssen anders ins Repo
+    (z. B. vom Nutzer direkt über GitHub hochladen).
 
 ### claude/favicon-logo — Favicon aus dem quadratischen Feinkost-Logo
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
@@ -122,7 +149,8 @@ _Letzte Änderung: 2026-09-21_
     Das Quell-Logo hat eine helle 1-px-Linie am linken Rand → beim automatischen
     Zuschnitt Randspalten ignorieren.
   - Ein `og:image` für Social-Sharing gibt es weiterhin **nicht** — Kandidat wäre
-    `images/favicon-512.png` oder ein eigenes 1200×630-Bild.
+    `image
+s/favicon-512.png` oder ein eigenes 1200×630-Bild.
 
 ### claude/druckausgleich-ticketlink — Ticket-Link „Druckausgleich" 10.10.2026, vergangene Termine raus
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
@@ -149,7 +177,8 @@ _Letzte Änderung: 2026-09-21_
     **und** als JSON-LD-Array im `<head>`. Immer beides ändern. Das JSON-LD wurde
     per `json.loads`/`json.dumps` (indent=2, ensure_ascii=False) neu geschrieben.
   - Der Ticket-Kasten oben ist **statisch** verdrahtet (kein JS) — nach dem
-    10.10.2026 manuell auf den nächsten Termin umstellen.
+    10.10.2026 manuell auf
+ den nächsten Termin umstellen.
   - Externe Links (toduu) sind aus der Sandbox **nicht** erreichbar (Proxy 403) →
     Link-Prüfung im Browser des Nutzers.
 
@@ -180,7 +209,8 @@ _Letzte Änderung: 2026-09-21_
     (harmlos).
   - Logo-Freistellung per Pillow/numpy in der Sandbox (Luminanz→Alpha, dunkle
     Pixel→weiß) aus dem gelieferten Logo mit weißem Hintergrund.
-  - Tailwind kommt per CDN; in der Sandbox ist `cdn.tailwindcss.com` durch den
+  - Tailwind kommt per CDN; in der Sandbox ist `cdn
+.tailwindcss.com` durch den
     Proxy blockiert → lokale Vorschau wirkt ungestylt, ist aber **kein** Fehler.
 
 ### claude/namecheap-ssl-after-migration-2c9d8l — SSL nach Hoster-Migration (Namecheap → Hetzner/GitHub Pages)
@@ -212,7 +242,8 @@ _Letzte Änderung: 2026-09-21_
    Hauptbranch ist **`main`**. Diese Datei komplett lesen. Repo ist eine statische
    GitHub-Pages-Website (kein Build, keine Tests).
 2. **Branch klären:** `git fetch origin --prune`, dann
-   `git rev-list --count origin/main..origin/<dein-branch>`.
+   `git rev-list --count origin/main..origin/<dein-b
+ranch>`.
    - **0** → Arbeit ist schon in `main`; dem Nutzer Bescheid geben (Branch kann weg).
    - **>0** → betroffenen Bereich prüfen (hier: Browser-Sichtprüfung, da keine
      Testsuite). Wenn fertig und in Ordnung → in `main` mergen und pushen. Wenn
