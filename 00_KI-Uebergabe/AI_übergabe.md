@@ -1,9 +1,7 @@
 # AI-Übergabe — zentrale Kontextdatei für alle KI-Sitzungen
 
 Diese Datei ist der **gemeinsame Gedächtnisspeicher aller KI-Chats** zu diesem
-Projekt. Jede neue Sitzung liest **zuerst** diese Datei, bevor sie arbeitet, und
-trägt am Ende ihren eigenen Abschnitt unter §6 nach. So weiß jede Sitzung, was
-vorher passiert ist, welche Regeln gelten und wo die Stolperfallen liegen.
+Projekt. Jede neue Sitzung liest **zuerst** diese Datei, bevor sie arbeitet, undträgt am Ende ihren eigenen Abschnitt unter §6 nach. So weiß jede Sitzung, wasvorher passiert ist, welche Regeln gelten und wo die Stolperfallen liegen.
 
 _Letzte Änderung: 2026-09-22_
 
@@ -57,8 +55,7 @@ _Letzte Änderung: 2026-09-22_
 - **`CNAME` niemals entfernen oder ändern** — sonst bricht die Domain-Anbindung
   und die Seite ist unter `feinkost-club.de` nicht mehr erreichbar.
 - **SEO konsistent halten:** Bei neuen Seiten `sitemap.xml` mitpflegen; bei
-  inhaltlichen Änderung
-en `lastmod` in `sitemap.xml` aktualisieren.
+  inhaltlichen Änderungen `lastmod` in `sitemap.xml` aktualisieren.
 - **`main` ist live.** Direkt auf `main` gepushte Änderungen gehen sofort online —
   entsprechend sorgfältig committen.
 - **Vor dem Commit:** Da es keine Testsuite gibt → HTML im Browser sichten
@@ -93,8 +90,7 @@ en `lastmod` in `sitemap.xml` aktualisieren.
     Nutzers, außerhalb des Repos).
   - **Event-Termine** in `index.html` sind bis Ende 2026 gepflegt; laufend aktuell
     halten. Vergangene Termine **entfernen** (Liste **und** JSON-LD) — Stand
-    2026-09-21 stehen nur no
-ch die 6 Termine ab 10.10.2026 drin.
+    2026-09-21 stehen nur noch die 6 Termine ab 10.10.2026 drin.
   - **Ticket-Kasten „Nächster Rave"** oben auf der Startseite zeigt fest auf
     „Druckausgleich" (10.10.2026). Nach dem Event auf den nächsten Termin
     umstellen oder entfernen, sonst wirbt die Seite für eine vergangene Party.
@@ -134,14 +130,14 @@ ch die 6 Termine ab 10.10.2026 drin.
     ob §7 „Externe Links" in `legal.html` ergänzt werden muss.
   - Chat-Uploads enthalten keine Binärdaten → Logo-Dateien müssen
     anders ins Repo (z. B. direkt über GitHub hochladen).
-  - **WICHTIG, Tooling:** Der URL-Reader bricht lange Zeilen um
-    (2000er-Chunks) und macht Dateien beim Weiterverarbeiten
-    kaputt. Dateien aus dem URL-Read NIE ungeprüft zurückschreiben
-    — erst entfalten (Gitterposition 2000+2001k) und gegen
-    jsDelivr abgleichen. Commits 3fbcfb9 und 70e8197 enthielten
-    solche Artefakte; finaler Stand wurde aus Commit 9856bb
-    (verifiziert) neu aufgebaut. fold-test.html nach Vermessung
-    gelöscht.
+  - **WICHTIG, Tooling:** Der URL-Reader fügt beim Lesen von
+    Dateien willkürliche Zeilenumbrüche ein (2000er-Chunks,
+    teils versetzt). Inhalte aus dem URL-Read NIE ungeprüft
+    zurückschreiben — erst entfalten und über zwei Kanäle
+    (raw.githubusercontent + jsDelivr) abgleichen. Commits 3fbcfb9
+    und 70e8197 und 2e966a4 enthielten solche Artefakte;
+    finaler Stand wurde aus Commit 9856bb (verifiziert)
+    neu aufgebaut. fold-test.html nach Vermessung gelöscht.
 
 ### claude/favicon-logo — Favicon aus dem quadratischen Feinkost-Logo
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
@@ -162,8 +158,7 @@ ch die 6 Termine ab 10.10.2026 drin.
     Das Quell-Logo hat eine helle 1-px-Linie am linken Rand → beim automatischen
     Zuschnitt Randspalten ignorieren.
   - Ein `og:image` für Social-Sharing gibt es weiterhin **nicht** — Kandidat wäre
-    `image
-s/favicon-512.png` oder ein eigenes 1200×630-Bild.
+    `images/favicon-512.png` oder ein eigenes 1200×630-Bild.
 
 ### claude/druckausgleich-ticketlink — Ticket-Link „Druckausgleich" 10.10.2026, vergangene Termine raus
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
@@ -255,8 +250,7 @@ s/favicon-512.png` oder ein eigenes 1200×630-Bild.
    Hauptbranch ist **`main`**. Diese Datei komplett lesen. Repo ist eine statische
    GitHub-Pages-Website (kein Build, keine Tests).
 2. **Branch klären:** `git fetch origin --prune`, dann
-   `git rev-list --count origin/main..origin/<dein-b
-ranch>`.
+   `git rev-list --count origin/main..origin/<dein-branch>`.
    - **0** → Arbeit ist schon in `main`; dem Nutzer Bescheid geben (Branch kann weg).
    - **>0** → betroffenen Bereich prüfen (hier: Browser-Sichtprüfung, da keine
      Testsuite). Wenn fertig und in Ordnung → in `main` mergen und pushen. Wenn
