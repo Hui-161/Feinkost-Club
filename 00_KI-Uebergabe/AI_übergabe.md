@@ -106,29 +106,39 @@ ch die 6 Termine ab 10.10.2026 drin.
 
 ## 6. Register der Sitzungen / Branches
 
-### session/2026-09-22-foerderer-logos — Förderer-Logos im Footer
-- **Status:** gemerged — direkt auf `main` gepusht (kein separater Branch).
-- **Zeitraum/Thema:** 2026-09-22. Mail von Hannes Herrmann (IEK) „Logo": zwei
-  Förderer-Logos im Footer, jeweils auf die Förderer-Seite verlinkt, darüber der
-  Hinweis „Gefördert von:".
+### session/2026-09-22-foerderer-logos
+- **Status:** gemerged — direkt auf `main` gepusht (kein Branch).
+- **Zeitraum/Thema:** 2026-09-22. Mail von Hannes Herrmann (IEK)
+  „Logo": zwei Förderer-Logos im Footer, jeweils auf die
+  Förderer-Seite verlinkt, darüber der Hinweis „Gefördert von:".
 - **Wesentliche Ergebnisse:**
-  - `index.html`-Footer: neue Vollbreite-Zeile mit „Gefördert von:" und zwei Logos
-    auf weißen Karten (Seiten-Design dunkel, Logos dunkel/farbig auf weiß):
-    1. **Initiative Musik** → https://www.initiative-musik.de/ — Bild: gstatic-Thumbnail-URL aus der Mail.
-    2. **BKM** (Beauftragte der Bundesregierung für Kultur und Medien) → https://www.kulturstaatsminister.de/ — Bild: offizielle SVG-URL
-       https://kulturstaatsminister.de/fileadmin/Logo/BKM_de_v2__Web_farbig.svg
-  - `sitemap.xml`: `lastmod` der Startseite auf 2026-09-22 aktualisiert.
+  - `index.html`-Footer: Vollbreite-Zeile mit „Gefördert von:"
+    und zwei Logos auf weißen Karten (Seite dunkel, Logos
+    dunkel/farbig auf weiß):
+    1. **Initiative Musik** -> https://www.initiative-musik.de/
+       Bild: gstatic-Thumbnail-URL aus der Mail.
+    2. **BKM** (Beauftragte der Bundesregierung für Kultur und
+       Medien) -> https://www.kulturstaatsminister.de/, Bild:
+       offizielle SVG-URL kulturstaatsminister.de/fileadmin/
+       Logo/BKM_de_v2__Web_farbig.svg.
+  - `sitemap.xml`: `lastmod` der Startseite auf 2026-09-22.
   - `legal.html` hat keinen Footer → dort nichts ergänzt.
 - **Wichtig für Nachfolger / Stolperfallen:**
-  - **Beide Logos sind Hotlinks** (nicht im Repo gehostet), weil die KI-Sandbox keine
-    Binärdateien laden/pushen kann. Die gstatic-Thumbnail-URL ist **nicht dauerhaft
-    stabil** → sobald eine offizielle Logo-Datei der Initiative Musik vorliegt, unter
-    `images/` hosten und `src` ersetzen. BKM-SVG bei Gelegenheit ebenfalls lokal speichern.
-  - **Datenschutz:** Hotlinks lösen beim Seitenaufruf Requests an Google (gstatic) und
-    kulturstaatsminister.de aus. Prüfen, ob §7 „Externe Links" in `legal.html` ergänzt
-    werden muss.
-  - Chat-Uploads enthalten keine Binärdaten → Logo-Dateien müssen anders ins Repo
-    (z. B. vom Nutzer direkt über GitHub hochladen).
+  - **Beide Logos sind Hotlinks** (nicht im Repo gehostet),
+    weil die KI-Sandbox keine Binärdateien laden/pushen kann.
+    Die gstatic-Thumbnail-URL ist **nicht dauerhaft stabil** →
+    sobald eine offizielle Logo-Datei vorliegt, unter `images/`
+    hosten und `src` ersetzen; BKM-SVG ebenfalls bei Gelegenheit
+    lokal speichern.
+  - **Datenschutz:** Hotlinks lösen beim Seitenaufruf Requests
+    an Google (gstatic) und kulturstaatsminister.de aus. Prüfen,
+    ob §7 „Externe Links" in `legal.html` ergänzt werden muss.
+  - Chat-Uploads enthalten keine Binärdaten → Logo-Dateien müssen
+    anders ins Repo (z. B. direkt über GitHub hochladen).
+  - Erster Push-Versuch (Commit 3fbcfb9) enthielt durch die
+    Tool-Übertragung eingeschleppte Zeilenumbrüche mitten in
+    HTML-Attributen; wurde mit Folge-Commit aus dem Elter-Stand
+    neu aufgebaut.
 
 ### claude/favicon-logo — Favicon aus dem quadratischen Feinkost-Logo
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
