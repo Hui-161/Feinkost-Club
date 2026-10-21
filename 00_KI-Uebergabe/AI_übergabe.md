@@ -101,10 +101,12 @@ _Letzte Änderung: 2026-10-21_
     werden, damit die Seite sauber bleibt. Dafür läuft die **Routine
     „Feinkost: Termine & Ticket-Links prüfen"** (wöchentlich, Montag früh).
   - **Direkte toduu-Ticket-Links** je Termin eintragen (Attribut `href` der
-    `.event-ticket` in der Karte **und** `offers.url` im JSON-LD). Stand 2026-10-21
-    zeigen alle Karten noch auf die toduu-Org-Seite, weil `toduu.de` aus der
-    Sandbox nicht erreichbar ist (Proxy/DNS). Der Betreiber liefert die URLs oder
-    gibt `toduu.de` in den Netzwerk-Einstellungen der Cloud-Umgebung frei.
+    `.event-ticket` in der Karte **und** `offers.url`/`url` im JSON-LD). Stand
+    2026-10-21: **Vierte Dimension 12.12.** hat den direkten Link
+    (`https://toduu.de/events/vierte-dimension`, vom Betreiber per Screenshot);
+    **Classic Night 14.11. und 26.12.** zeigen noch auf die toduu-Org-Seite.
+    `toduu.de` ist aus der Sandbox nicht erreichbar (Proxy/DNS) → URLs liefert der
+    Betreiber oder gibt `toduu.de` in den Netzwerk-Einstellungen der Umgebung frei.
   - Branch `claude/website-image-schedule-update-hhh4xu` ist gemergt und kann auf
     GitHub gelöscht werden.
 
