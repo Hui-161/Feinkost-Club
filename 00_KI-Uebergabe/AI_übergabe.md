@@ -56,6 +56,13 @@ _Letzte Änderung: 2026-10-21_
   und die Seite ist unter `feinkost-club.de` nicht mehr erreichbar.
 - **SEO konsistent halten:** Bei neuen Seiten `sitemap.xml` mitpflegen; bei
   inhaltlichen Änderungen `lastmod` in `sitemap.xml` aktualisieren.
+- **Teenie-Partys: kein Vorverkauf, nur Abendkasse** (Betreiber-Vorgabe 2026-10-21).
+  Teenie-Karten bekommen **keinen** Ticket-Button und **keinen** toduu-Link,
+  sondern den Hinweis „Nur Abendkasse"; im JSON-LD `offers.availability` =
+  `InStoreOnly` ohne `url`. Sie werden **nie** im Kasten „Nächster Rave" oben
+  angekündigt (Attribute `data-vorverkauf="nein" data-top="nein"` an der Karte).
+  Oben stehen nur die Techno-Partys (Classic Night, Techno / House VA,
+  Sonderveranstaltungen wie Druckausgleich).
 - **`main` ist live.** Direkt auf `main` gepushte Änderungen gehen sofort online —
   entsprechend sorgfältig committen.
 - **Vor dem Commit:** Da es keine Testsuite gibt → HTML im Browser sichten
@@ -102,6 +109,25 @@ _Letzte Änderung: 2026-10-21_
     GitHub gelöscht werden.
 
 ## 6. Register der Sitzungen / Branches
+
+### claude/teenie-party-abendkasse — Teenie-Partys nur Abendkasse, nicht im Kasten oben
+- **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
+- **Zeitraum/Thema:** 2026-10-21 (gleiche Sitzung wie `claude/naechster-rave-automatik`).
+  Betreiber: Teenie-Partys gehören nicht in den Vorverkauf (nur Abendkasse) und
+  sollen nicht groß oben angekündigt werden; dort nur die Techno-Partys.
+- **Wesentliche Ergebnisse:**
+  - Teenie-Karten: Subline „Kein Vorverkauf · Tickets nur an der Abendkasse",
+    rechts Badge „Nur Abendkasse" statt Ticket-Button, Attribute
+    `data-vorverkauf="nein" data-top="nein"`.
+  - Script: wählt für den Kasten die erste kommende Karte **ohne** `data-top="nein"`;
+    der Leer-Hinweis erscheint nur, wenn gar kein Termin mehr kommt.
+  - Statischer Fallback im Kasten jetzt Classic Night 14.11.
+  - JSON-LD der Teenie-Partys: `offers` ohne `url`, `availability` InStoreOnly,
+    Beschreibung mit Abendkasse-Hinweis.
+  - Regel in §3 festgehalten; Routine-Prompt entsprechend ergänzt.
+- **Wichtig für Nachfolger / Stolperfallen:**
+  - Neue Teenie-Termine immer mit beiden Attributen anlegen, sonst landen sie
+    oben im Kasten und bekommen über die Routine womöglich einen Ticket-Link.
 
 ### claude/naechster-rave-automatik — Kasten „Nächster Rave" automatisch, 14.11. korrigiert, Routine
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
