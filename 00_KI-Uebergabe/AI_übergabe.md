@@ -3,7 +3,7 @@
 Diese Datei ist der **gemeinsame Gedächtnisspeicher aller KI-Chats** zu diesem
 Projekt. Jede neue Sitzung liest **zuerst** diese Datei, bevor sie arbeitet, undträgt am Ende ihren eigenen Abschnitt unter §6 nach. So weiß jede Sitzung, wasvorher passiert ist, welche Regeln gelten und wo die Stolperfallen liegen.
 
-_Letzte Änderung: 2026-09-22_
+_Letzte Änderung: 2026-10-21_
 
 ---
 
@@ -33,7 +33,7 @@ _Letzte Änderung: 2026-09-22_
 
 | Ordner / Datei            | Zweck                                                              | Stand |
 |---------------------------|-------------------------------------------------------------------|-------|
-| `index.html`              | Startseite „Feinkost Club \| Techno in Ballenstedt"; oben ein **Ticket-Kasten „Nächster Rave"** (direkter Ticket-Link), darunter Sektion **„Nächste Raves"** (Event-Termine 2026). | aktiv |
+| `index.html`              | Startseite „Feinkost Club \| Techno in Ballenstedt"; oben **Kasten „Nächster Rave"** (wird per Script automatisch aus der ersten kommenden `.event-card` gefüllt), darunter Sektion **„Nächste Raves"** (Termine als `.event-card` mit `data-start`/`data-end`; abgelaufene werden automatisch ausgeblendet). | aktiv |
 | `legal.html`              | Impressum & Datenschutz.                                           | aktiv |
 | `CNAME`                   | `feinkost-club.de` — bindet GitHub Pages an die Domain. **Nicht löschen.** | aktiv |
 | `robots.txt`              | SEO: erlaubt alles, verweist auf Sitemap.                          | aktiv |
@@ -88,18 +88,58 @@ _Letzte Änderung: 2026-09-22_
     Kündigungen bei Namecheap klären.
   - **Auto-Renew des SSL-Produkts bei Namecheap** deaktivieren (Aufgabe des
     Nutzers, außerhalb des Repos).
-  - **Event-Termine** in `index.html` sind bis Ende 2026 gepflegt; laufend aktuell
-    halten. Vergangene Termine **entfernen** (Liste **und** JSON-LD) — Stand
-    2026-09-21 stehen nur noch die 6 Termine ab 10.10.2026 drin.
-  - **Ticket-Kasten „Nächster Rave"** oben auf der Startseite zeigt fest auf
-    „Druckausgleich" (10.10.2026). Nach dem Event auf den nächsten Termin
-    umstellen oder entfernen, sonst wirbt die Seite für eine vergangene Party.
-  - Der Ticket-Link `https://toduu.de/events/druckausgleich` kam vom Betreiber und
-    konnte aus der Sandbox nicht aufgerufen werden (Proxy) → im Browser prüfen.
+  - **Event-Termine** in `index.html` sind bis Ende 2026 gepflegt. Abgelaufene
+    Termine blendet die Seite seit 2026-10-21 **selbst** aus (Script, siehe §6);
+    sie müssen aber weiterhin aus dem **JSON-LD** entfernt und als Karte gelöscht
+    werden, damit die Seite sauber bleibt. Dafür läuft die **Routine
+    „Feinkost: Termine & Ticket-Links prüfen"** (wöchentlich, Montag früh).
+  - **Direkte toduu-Ticket-Links** je Termin eintragen (Attribut `href` der
+    `.event-ticket` in der Karte **und** `offers.url` im JSON-LD). Stand 2026-10-21
+    zeigen alle Karten noch auf die toduu-Org-Seite, weil `toduu.de` aus der
+    Sandbox nicht erreichbar ist (Proxy/DNS). Der Betreiber liefert die URLs oder
+    gibt `toduu.de` in den Netzwerk-Einstellungen der Cloud-Umgebung frei.
   - Branch `claude/website-image-schedule-update-hhh4xu` ist gemergt und kann auf
     GitHub gelöscht werden.
 
 ## 6. Register der Sitzungen / Branches
+
+### claude/naechster-rave-automatik — Kasten „Nächster Rave" automatisch, 14.11. korrigiert, Routine
+- **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
+- **Zeitraum/Thema:** 2026-10-21. Betreiber-Auftrag: Classic Night ist am **14.11.**
+  (nicht 07.11.; sein Hand-Commit `6da7dd7` hatte nur die Karte geändert, nicht das
+  JSON-LD), der Kasten oben zeigte noch „Druckausgleich" vom 10.10., künftig soll
+  die angepriesene Veranstaltung automatisch verschwinden, sobald sie vorbei ist,
+  und eine Routine soll das überwachen.
+- **Wesentliche Ergebnisse:**
+  - **Automatik:** Jede Terminkarte ist jetzt `div.event-card` mit `data-start` /
+    `data-end` (ISO 8601 mit Zeitzone) und enthält `.event-date`, `.event-title`,
+    optional `.event-sub` und einen Button `a.event-ticket`. Ein Inline-Script vor
+    `</body>` blendet Karten mit `data-end < jetzt` aus (`hidden`) und füllt
+    `#next-rave-box` (Klassen `.next-date`, `.next-title`, `.next-sub`,
+    `.next-ticket`) aus der **ersten kommenden** Karte. Gibt es keine, wird der
+    Kasten versteckt und `#events-empty` eingeblendet. CSS-Regel
+    `[hidden]{display:none!important}` nötig, weil Tailwind-`flex`/`block` sonst
+    das `hidden`-Attribut überstimmen.
+  - **Statischer Fallback:** Der Kasten enthält im HTML den nächsten Termin als
+    Text (für Crawler/ohne JS). Den beim Pflegen mitziehen.
+  - **Daten:** 10.10. (Druckausgleich) entfernt (Karte + JSON-LD), Classic Night
+    im JSON-LD auf 14.11. (`startDate` 2026-11-14T22:00+01:00, `endDate`
+    2026-11-15T08:00+01:00, Name). Jede Karte hat jetzt einen eigenen
+    „Tickets sichern"-Button (derzeit toduu-Org-Link, direkte Links fehlen noch).
+  - `sitemap.xml` `lastmod` auf 2026-10-21.
+  - **Routine „Feinkost: Termine & Ticket-Links prüfen"** (Cloud-Routine `trig_01Yc6mfWiYkBvfDVvkwPSLyT`, wöchentlich
+    Montag 05:00 UTC, frische Session): abgelaufene Termine aus Karten + JSON-LD
+    entfernen, Fallback im Kasten auf den nächsten Termin setzen, Konsistenz
+    Karte↔JSON-LD prüfen, direkte toduu-URLs nachtragen, wenn `toduu.de`
+    erreichbar ist — sonst den Betreiber um die URL bitten, **nie raten**.
+- **Wichtig für Nachfolger / Stolperfallen:**
+  - Termine stehen **zweimal**: Karte (`.event-card`) **und** JSON-LD-Array im
+    `<head>`. Reihenfolge und `startDate`/`endDate` müssen übereinstimmen.
+  - `toduu.de` ist aus der Sandbox **nicht** erreichbar (Proxy 403 / DNS
+    ENOTFOUND). Ticket-URLs daher nur vom Betreiber übernehmen oder nach
+    Freigabe der Domain in den Netzwerk-Einstellungen der Umgebung.
+  - Tailwind-CDN lädt in der Sandbox nicht → Playwright-Vorschau ist ungestylt,
+    die Logik (hidden/Texte/Links) lässt sich trotzdem per DOM prüfen.
 
 ### session/2026-09-22-foerderer-logos
 - **Status:** gemerged — direkt auf `main` gepusht (kein Branch).
