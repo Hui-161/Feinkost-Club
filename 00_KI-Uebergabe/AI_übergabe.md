@@ -3,7 +3,7 @@
 Diese Datei ist der **gemeinsame Gedächtnisspeicher aller KI-Chats** zu diesem
 Projekt. Jede neue Sitzung liest **zuerst** diese Datei, bevor sie arbeitet, undträgt am Ende ihren eigenen Abschnitt unter §6 nach. So weiß jede Sitzung, wasvorher passiert ist, welche Regeln gelten und wo die Stolperfallen liegen.
 
-_Letzte Änderung: 2026-10-21_
+_Letzte Änderung: 2026-10-25_
 
 ---
 
@@ -104,9 +104,19 @@ _Letzte Änderung: 2026-10-21_
     `.event-ticket` in der Karte **und** `offers.url`/`url` im JSON-LD). Stand
     2026-10-21: **Vierte Dimension 12.12.** hat den direkten Link
     (`https://toduu.de/events/vierte-dimension`, vom Betreiber per Screenshot);
-    **Classic Night 14.11. und 26.12.** zeigen noch auf die toduu-Org-Seite.
-    `toduu.de` ist aus der Sandbox nicht erreichbar (Proxy/DNS) → URLs liefert der
-    Betreiber oder gibt `toduu.de` in den Netzwerk-Einstellungen der Umgebung frei.
+    **Classic Night 14.11. und 26.12.** zeigen noch auf die toduu-Org-Seite, weil
+    es dafür auf toduu **kein Event gibt** (geprüft 2026-10-25: einziges kommendes
+    Event dort ist Vierte Dimension 12.12.). Betreiber muss die Classic Nights auf
+    toduu anlegen oder entscheiden, dass es nur Abendkasse gibt.
+  - **toduu ist seit 2026-10-25 aus der Sandbox erreichbar** (Domain in den
+    Netzwerk-Einstellungen der Cloud-Umgebung freigegeben). Verlässliche Quelle für
+    Event-URLs ist die JSON-Schnittstelle
+    `https://toduu.de/api/organizer/events?uuid=68f11da1530230a886b98702`
+    (`data[].name`, `.slug`, `.date`, `.time`; URL = `https://toduu.de/events/<slug>`;
+    mit `&type=expired_event` die vergangenen). Die Org-Seite selbst ist eine
+    JavaScript-App ohne Links im HTML. **Nur Name/Slug/Datum/Zeit verwenden** —
+    andere Felder der Antwort enthalten Kontakt- und Steuerdaten des Veranstalters
+    und dürfen weder gespeichert noch ins Repo übernommen werden.
   - Branch `claude/website-image-schedule-update-hhh4xu` ist gemergt und kann auf
     GitHub gelöscht werden.
 
