@@ -117,8 +117,8 @@ _Letzte Änderung: 2026-11-01_
     JavaScript-App ohne Links im HTML. **Nur Name/Slug/Datum/Zeit verwenden** —
     andere Felder der Antwort enthalten Kontakt- und Steuerdaten des Veranstalters
     und dürfen weder gespeichert noch ins Repo übernommen werden.
-  - Branch `claude/website-image-schedule-update-hhh4xu` ist gemergt und kann auf
-    GitHub gelöscht werden.
+  - Alle gemergten Feature-Branches wurden am 2026-11-01 auf GitHub gelöscht;
+    auf dem Remote existiert nur noch `main`.
 
 ## 6. Register der Sitzungen / Branches
 
