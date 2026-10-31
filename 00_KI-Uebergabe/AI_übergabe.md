@@ -3,7 +3,7 @@
 Diese Datei ist der **gemeinsame Gedächtnisspeicher aller KI-Chats** zu diesem
 Projekt. Jede neue Sitzung liest **zuerst** diese Datei, bevor sie arbeitet, undträgt am Ende ihren eigenen Abschnitt unter §6 nach. So weiß jede Sitzung, wasvorher passiert ist, welche Regeln gelten und wo die Stolperfallen liegen.
 
-_Letzte Änderung: 2026-10-25_
+_Letzte Änderung: 2026-11-01_
 
 ---
 
@@ -56,13 +56,15 @@ _Letzte Änderung: 2026-10-25_
   und die Seite ist unter `feinkost-club.de` nicht mehr erreichbar.
 - **SEO konsistent halten:** Bei neuen Seiten `sitemap.xml` mitpflegen; bei
   inhaltlichen Änderungen `lastmod` in `sitemap.xml` aktualisieren.
-- **Teenie-Partys: kein Vorverkauf, nur Abendkasse** (Betreiber-Vorgabe 2026-10-21).
-  Teenie-Karten bekommen **keinen** Ticket-Button und **keinen** toduu-Link,
-  sondern den Hinweis „Nur Abendkasse"; im JSON-LD `offers.availability` =
-  `InStoreOnly` ohne `url`. Sie werden **nie** im Kasten „Nächster Rave" oben
-  angekündigt (Attribute `data-vorverkauf="nein" data-top="nein"` an der Karte).
-  Oben stehen nur die Techno-Partys (Classic Night, Techno / House VA,
-  Sonderveranstaltungen wie Druckausgleich).
+- **Vorverkauf nur für Sonderveranstaltungen** (z. B. Druckausgleich, Vierte
+  Dimension). **Classic Nights** (Betreiber 2026-11-01) und **Teenie-Partys**
+  (Betreiber 2026-10-21) laufen **nur über die Abendkasse**: keine Ticket-Buttons,
+  keine toduu-Links, Badge „Nur Abendkasse", Subline „Kein Vorverkauf · Tickets nur
+  an der Abendkasse"; im JSON-LD `offers.availability` = `InStoreOnly` ohne `url`.
+  Attribute an der Karte: `data-vorverkauf="nein"` = kein Ticket-Button (Classic
+  Night **und** Teenie), `data-top="nein"` = nie im Kasten „Nächster Rave" oben
+  (**nur** Teenie-Partys). Classic Nights werden oben angekündigt; der Kasten zeigt
+  dann das Badge `.next-abendkasse` statt des Buttons `.next-ticket`.
 - **`main` ist live.** Direkt auf `main` gepushte Änderungen gehen sofort online —
   entsprechend sorgfältig committen.
 - **Vor dem Commit:** Da es keine Testsuite gibt → HTML im Browser sichten
@@ -100,14 +102,12 @@ _Letzte Änderung: 2026-10-25_
     sie müssen aber weiterhin aus dem **JSON-LD** entfernt und als Karte gelöscht
     werden, damit die Seite sauber bleibt. Dafür läuft die **Routine
     „Feinkost: Termine & Ticket-Links prüfen"** (wöchentlich, Montag früh).
-  - **Direkte toduu-Ticket-Links** je Termin eintragen (Attribut `href` der
-    `.event-ticket` in der Karte **und** `offers.url`/`url` im JSON-LD). Stand
-    2026-10-21: **Vierte Dimension 12.12.** hat den direkten Link
-    (`https://toduu.de/events/vierte-dimension`, vom Betreiber per Screenshot);
-    **Classic Night 14.11. und 26.12.** zeigen noch auf die toduu-Org-Seite, weil
-    es dafür auf toduu **kein Event gibt** (geprüft 2026-10-25: einziges kommendes
-    Event dort ist Vierte Dimension 12.12.). Betreiber muss die Classic Nights auf
-    toduu anlegen oder entscheiden, dass es nur Abendkasse gibt.
+  - **Direkte toduu-Ticket-Links** gibt es nur für Sonderveranstaltungen mit
+    Vorverkauf (Stand 2026-11-01: Vierte Dimension 12.12. →
+    `https://toduu.de/events/vierte-dimension`). Classic Nights und Teenie-Partys
+    sind Abendkasse, dafür wird **kein** toduu-Event gesucht. Neue
+    Sonderveranstaltungen: Link in Karte (`href` der `.event-ticket`) **und**
+    JSON-LD (`offers.url`, `url`) eintragen.
   - **toduu ist seit 2026-10-25 aus der Sandbox erreichbar** (Domain in den
     Netzwerk-Einstellungen der Cloud-Umgebung freigegeben). Verlässliche Quelle für
     Event-URLs ist die JSON-Schnittstelle
@@ -121,6 +121,23 @@ _Letzte Änderung: 2026-10-25_
     GitHub gelöscht werden.
 
 ## 6. Register der Sitzungen / Branches
+
+### claude/classic-night-abendkasse — Classic Nights nur Abendkasse, Kasten zeigt Badge statt Button
+- **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
+- **Zeitraum/Thema:** 2026-11-01. Betreiber: Classic Nights laufen nur über die
+  Abendkasse (auf toduu gibt es dafür kein Event), sollen aber weiter oben
+  angekündigt werden.
+- **Wesentliche Ergebnisse:**
+  - Karten 14.11. und 26.12.: `data-vorverkauf="nein"` (ohne `data-top`), Subline
+    und Badge „Nur Abendkasse" statt Ticket-Button; JSON-LD `offers` InStoreOnly
+    ohne `url`.
+  - Kasten `#next-rave-box`: neues Element `.next-abendkasse` (Badge). Script zeigt
+    Button `.next-ticket` nur, wenn die gewählte Karte einen `a.event-ticket` hat,
+    sonst das Badge. Statischer Fallback: Classic Night 14.11. mit Badge.
+  - Regel in §3 verallgemeinert, §5-Stand und Routine-Prompt angepasst.
+- **Wichtig für Nachfolger / Stolperfallen:**
+  - Derzeit hat nur Vierte Dimension 12.12. einen Ticket-Button. Der Sammel-Button
+    „Tickets auf toduu sichern" unter der Liste bleibt als allgemeiner Verweis.
 
 ### claude/teenie-party-abendkasse — Teenie-Partys nur Abendkasse, nicht im Kasten oben
 - **Status:** gemerged — Inhalt vollständig in `main`; Branch kann gelöscht werden.
