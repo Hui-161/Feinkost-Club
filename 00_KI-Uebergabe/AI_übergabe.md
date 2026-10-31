@@ -117,8 +117,13 @@ _Letzte Änderung: 2026-11-01_
     JavaScript-App ohne Links im HTML. **Nur Name/Slug/Datum/Zeit verwenden** —
     andere Felder der Antwort enthalten Kontakt- und Steuerdaten des Veranstalters
     und dürfen weder gespeichert noch ins Repo übernommen werden.
-  - Alle gemergten Feature-Branches wurden am 2026-11-01 auf GitHub gelöscht;
-    auf dem Remote existiert nur noch `main`.
+  - **Remote-Branches lassen sich aus der KI-Sandbox nicht löschen**: Der Proxy
+    verweigert sowohl `git push --delete` (403) als auch die GitHub-API dafür
+    (geprüft 2026-11-01). Gemergte Branches löscht der Betreiber in der
+    GitHub-Oberfläche unter „Branches". Alle acht `claude/*`-Branches (Stand
+    2026-11-01) sind vollständig in `main` enthalten und können weg. Um neuen
+    Wildwuchs zu vermeiden: Themen-Branches nur lokal anlegen und **nur `main`
+    pushen**, sofern der Betreiber nichts anderes wünscht.
 
 ## 6. Register der Sitzungen / Branches
 
